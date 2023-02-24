@@ -1,12 +1,31 @@
 <section class="board">
-    <div *ngFor="let frame of game.frames" class="frame">
+    <div *ngFor="let frame of game.frames; let i=index" 
+    class="frame" [ngClass]="{'active-frame': game.currentFrameIndex === i}">
         <div class="frame-number">{{frame.number}}</div>
         <div class="frame-score">
-            <div class="first">{{frame.score.first}}</div>
-            <div class="second">{{frame.score.second}}</div>
-            <div class="third" *ngIf="frame.score.third">{{frame.score.third}}</div>
+            <div class="first">{{frame.roles[0]}}</div>
+            <div class="second">{{frame.roles[1]}}</div>
+            <!-- <div class="third" *ngIf="frame.score.third">{{frame.score.third}}</div> -->
         </div>
         <div class="frame-total">{{frame.total}}</div>
     </div>
-    <div class="score-frame">214</div>
 </section>
+
+
+<section *ngIf="game.state === 'started'; else gameOver">
+    <mat-form-field appearance="fill">
+        <mat-label>Select role result</mat-label>
+        
+        <mat-select name="food" [(value)]="selectedRole">
+          <mat-option [value]="0">0</mat-option> 
+          <mat-option *ngFor="let value of availableOptions" [value]="value+1">
+            {{value+1}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <button (click)="roleSubmit()">Next Role</button>
+
+</section>
+
+<ng-template #gameOver>Game Over {{game.name}}, You Score is {{game.total}}</ng-template>

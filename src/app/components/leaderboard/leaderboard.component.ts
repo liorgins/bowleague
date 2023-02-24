@@ -50,7 +50,7 @@ export class LeaderboardComponent implements OnInit {
       if(result.rememberMe) {
         this.storageService.setLastName(result.name);
       }
-      this.router.navigate(['game']);
+      this.router.navigate(['game'], {queryParams: {name: result.name}});
     });
   }
 
