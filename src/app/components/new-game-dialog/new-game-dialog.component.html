@@ -1,0 +1,11 @@
+<div class="new-game-dialog">
+    <form [formGroup]="newGameForm" (submit)="play()">
+        <input formControlName="name" placeholder="Enter your name...">
+        <mat-checkbox formControlName="rememberMe">Remember me</mat-checkbox>
+        <button type="submit">Play</button>
+    </form>
+</div>
+
+<div class="continue-as" *ngIf="data.lastName !== null" (click)="continueClicked()">
+    CONTINUE AS {{data.lastName}}
+</div>

@@ -1,0 +1,30 @@
+input,
+button {
+    border-radius: 4px;
+    height: 45px;
+    font-size: var(--text-small);
+
+    &:focus {
+        outline: none;
+    }
+
+}
+
+input {
+    background-color: white;
+    border: 1px solid #e0e0e0;
+    padding: 0 10px;
+}
+
+button {
+    border: unset;
+    transition: all 0.4s linear;
+    cursor: pointer;
+    background-color: var(--action-color);
+    color: white;
+
+    &:disabled {
+        cursor: not-allowed;
+        opacity: 50%;
+    }
+}

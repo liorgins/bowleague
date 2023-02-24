@@ -1,0 +1,51 @@
+
+
+
+.game-hero {
+    height: 250px;
+    max-height: 350px;
+    margin: 20px;
+    background-color: var(--panel-bg);
+    display: grid;
+    justify-items: center;
+    align-items: center;
+    >p {
+        font-size: var(--text-large);
+        color: var(--text-color);
+        text-align: center;
+    }
+    >button {
+        width: 240px;
+    }
+
+    border-radius: var(--border-radius);
+}
+
+.leaderboard {
+    margin: 20px;
+    background-color: var(--panel-bg);
+    border-radius: var(--border-radius);
+    display: grid;
+    row-gap: 10px;
+    
+    >.row-header {
+        border-bottom: 1px solid var(--text-color);
+        font-weight: 600;
+    }
+
+    >.score-row {
+        height: 30px;
+        display: grid;
+        grid-template-columns: 50px 1fr 1fr;
+        align-items: center;
+        >.rank {
+
+        }
+        >.name {
+
+        }
+        >.score {
+           justify-self: end; 
+        }
+    }
+}

@@ -1,0 +1,14 @@
+.new-game-dialog {
+    display: grid;
+    row-gap: 20px;
+    justify-items: center;
+
+    >.continue-as {
+        height: 60px;
+        display: grid;
+        place-items: center;
+        background: var(--action-color);
+        color: var(--text-color);
+        width: 100%;
+    }
+}

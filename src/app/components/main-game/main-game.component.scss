@@ -1,0 +1,41 @@
+.board {
+    display: grid;
+    grid-template-columns: repeat(11, 1fr);
+    column-gap: 0px !important;
+    >.score-frame {
+        color: var(--text-color);
+    }
+}
+
+.frame {
+    display: grid;
+    grid-template-rows: repeat(3,1fr);
+    justify-items: center;
+    height: 120px;
+    max-width: 90px;
+    min-width: 60px;
+    border: 1px solid black;
+    color: var(--text-color);
+
+    >.frame-number {
+
+    }
+    >.frame-score {
+        width: 100%;
+        display: grid;
+        grid-auto-flow: column;
+        justify-content: space-evenly;
+        > .first {
+            border-right: 1px solid black;
+        }
+        
+
+    }
+
+    >.frame-total {
+
+    }
+    :nth-child(10) {
+        background: red;
+    }
+}

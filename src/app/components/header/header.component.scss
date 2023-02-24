@@ -1,0 +1,29 @@
+.header {
+    margin: 0 20px;
+    height: var(--header-height);
+    display: grid;
+    column-gap: 10px;
+    grid-template-columns: auto auto;
+    align-items: center;
+    color: var(--text-color);
+
+    >.logo {
+        display: grid;
+        align-items: center;
+        column-gap: 10px;
+        grid-template-columns: auto 1fr;
+        font-size: var(--text-medium);
+        cursor: pointer;
+
+        >img {
+            width: 36px;
+            height: 36px;
+        }
+    }
+
+    >app-theme-toggle {
+        display: grid;
+        justify-items: end;
+    }
+
+}

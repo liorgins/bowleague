@@ -1,0 +1,12 @@
+<div class="toggle">
+    <input #mode id="chck" type="checkbox" (change)="toggleMode($event)">
+    <label for="chck" class="check-trail">
+      <span class="check-handler">
+        <img *ngIf="mode.checked; else dark" src="assets/icons/moon.svg"/>
+      </span>
+
+      <ng-template #dark>
+        <img src="assets/icons/sun-light.svg"/>
+      </ng-template>
+    </label>
+</div>

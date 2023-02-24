@@ -1,0 +1,12 @@
+<section class="board">
+    <div *ngFor="let frame of game.frames" class="frame">
+        <div class="frame-number">{{frame.number}}</div>
+        <div class="frame-score">
+            <div class="first">{{frame.score.first}}</div>
+            <div class="second">{{frame.score.second}}</div>
+            <div class="third" *ngIf="frame.score.third">{{frame.score.third}}</div>
+        </div>
+        <div class="frame-total">{{frame.total}}</div>
+    </div>
+    <div class="score-frame">214</div>
+</section>
