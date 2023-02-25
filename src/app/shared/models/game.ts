@@ -12,7 +12,7 @@ export class Frame {
     roles: number[] = new Array(3).fill(0);
     total: number = 0;
     strike = false;
-    split = false;
+    spare = false;
 
     constructor(number: number) {
         this.number = number;
@@ -22,7 +22,7 @@ export class Frame {
 
 
 export default class Game {
-    state: 'started' | 'over' = 'started';
+    state: 'started' | '10th' | 'over' = 'started';
     name: string;
     frames: Frame[];
     currentRole = 0;
@@ -64,8 +64,14 @@ export default class Game {
         if (this.current?.next) {
             this.current = this.current?.next;
             this.currentFrameIndex++;
-        } else {
-            this.state = 'over';
+            this.currentRole = 0;
+        } else {           
+            if(this.current.value.spare || this.current.value.strike) {
+                this.currentRole = 2;
+                this.state = '10th'
+            } else {
+                this.state = 'over';
+            }
         }
 
     }
@@ -75,8 +81,16 @@ export default class Game {
         if(this.state === 'over') {
             throw new Error('nextFrame should not be triggerd for finished game')
         }
-
+        
         const currentValue = this.current.value;
+        currentValue.roles[this.currentRole] = pins;
+
+        currentValue.total += pins;
+
+        if(this.state === '10th') {
+            this.state = 'over';
+            return;
+        }
 
         const handleStrikeBonus = () => {
             if (!this.current.prev?.value.strike) return;
@@ -86,21 +100,16 @@ export default class Game {
             currentValue.total += strikeBonus;
         }
 
-        currentValue.roles[this.currentRole] = pins;
-
-        currentValue.total += pins;
-
         if (this.currentRole === 1) {
             if (currentValue.roles[0] + currentValue.roles[1] === 10) {
-                currentValue.split = true;
+                currentValue.spare = true;
             }
             handleStrikeBonus();
             this.nextFrame();
-            this.currentRole = 0;
         } else {
             if (this.current.prev) {
                 const prev = this.current.prev;
-                if (prev.value.split) {
+                if (prev.value.spare) {
                     prev.value.total += pins;
                 }
                 this.current.value.total += prev.value.total;
@@ -110,7 +119,6 @@ export default class Game {
 
                 handleStrikeBonus();
                 this.nextFrame();
-                this.currentRole = 0;
                 return;
             }
             this.currentRole = 1;
@@ -118,6 +126,9 @@ export default class Game {
     }
 
     public get availablePins() {
+        if(this.state === '10th') {
+            return 10;
+        }
         return 10 - this.current.value.roles[0] - this.current.value.roles[1];
     }
 }

@@ -5,18 +5,19 @@
         <div class="frame-score">
             <div class="first">{{frame.roles[0]}}</div>
             <div class="second">{{frame.roles[1]}}</div>
-            <!-- <div class="third" *ngIf="frame.score.third">{{frame.score.third}}</div> -->
+            <div class="third" 
+                *ngIf="game.state !== 'started'">{{frame.roles[2]}}</div>
         </div>
         <div class="frame-total">{{frame.total}}</div>
     </div>
 </section>
 
 
-<section *ngIf="game.state === 'started'; else gameOver">
+<section *ngIf="game.state !== 'over'; else gameOver">
     <mat-form-field appearance="fill">
         <mat-label>Select role result</mat-label>
         
-        <mat-select name="food" [(value)]="selectedRole">
+        <mat-select name="score" [(value)]="selectedRole">
           <mat-option [value]="0">0</mat-option> 
           <mat-option *ngFor="let value of availableOptions" [value]="value+1">
             {{value+1}}
