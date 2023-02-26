@@ -1,4 +1,5 @@
 import * as e from "express";
+import { Subject } from "rxjs";
 
 export class FrameNode {
     value!: Frame;
@@ -24,7 +25,7 @@ export class Frame {
 export default class Game {
     state: 'started' | '10th' | 'over' = 'started';
     name: string;
-    frames: Frame[];
+    frames!: Frame[];
     currentRole = 0;
     currentFrameIndex = 0;
 
@@ -33,8 +34,16 @@ export default class Game {
     private current!: FrameNode;
 
 
+    frameSubject$: Subject<number>;
+    
+
     constructor(name: string) {
+        this.frameSubject$ = new Subject<number>();
         this.name = name;
+        this.initGameFrames();
+    }
+
+    initGameFrames() {
         this.frames = Array.from(Array(10).keys()).map(f => new Frame(f + 1));
         this.frames.forEach(frame => {
             const tmp = new FrameNode();
@@ -64,6 +73,7 @@ export default class Game {
         if (this.current?.next) {
             this.current = this.current?.next;
             this.currentFrameIndex++;
+            this.frameSubject$.next(this.currentFrameIndex);
             this.currentRole = 0;
         } else {           
             if(this.current.value.spare || this.current.value.strike) {
@@ -76,7 +86,6 @@ export default class Game {
 
     }
 
-    //handle 10th frame...
     setRole(pins: number) {
         if(this.state === 'over') {
             throw new Error('nextFrame should not be triggerd for finished game')
@@ -131,4 +140,5 @@ export default class Game {
         }
         return 10 - this.current.value.roles[0] - this.current.value.roles[1];
     }
+
 }

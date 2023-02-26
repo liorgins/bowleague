@@ -1,32 +1,45 @@
-<section class="board">
-    <div *ngFor="let frame of game.frames; let i=index" 
-    class="frame" [ngClass]="{'active-frame': game.currentFrameIndex === i}">
-        <div class="frame-number">{{frame.number}}</div>
-        <div class="frame-score">
-            <div class="first">{{frame.roles[0]}}</div>
-            <div class="second">{{frame.roles[1]}}</div>
-            <div class="third" 
-                *ngIf="game.state !== 'started'">{{frame.roles[2]}}</div>
-        </div>
-        <div class="frame-total">{{frame.total}}</div>
+<section class="title-section">
+  <div>Good Luck <span>{{game.name}}</span></div>
+</section>
+
+<section class="board-section" #board>
+  <div class="board">
+    <div *ngFor="let frame of game.frames; let i=index" class="frame"
+      [ngClass]="{'active-frame': game.currentFrameIndex === i}">
+      <div class="frame-number">{{frame.number}}</div>
+      <div class="frame-score">
+        <div class="first">{{frame.roles[0]}}</div>
+        <div class="second">{{frame.roles[1]}}</div>
+        <div class="third" *ngIf="game.state !== 'started' && (frame.spare || frame.strike)">{{frame.roles[2]}}</div>
+      </div>
+      <div class="frame-total">{{frame.total}}</div>
     </div>
+  </div>
 </section>
 
-
-<section *ngIf="game.state !== 'over'; else gameOver">
+<section class="game-controller-section"> 
+  <div class="game-controller" *ngIf="game.state !== 'over'; else gameOver">
     <mat-form-field appearance="fill">
-        <mat-label>Select role result</mat-label>
-        
-        <mat-select name="score" [(value)]="selectedRole">
-          <mat-option [value]="0">0</mat-option> 
-          <mat-option *ngFor="let value of availableOptions" [value]="value+1">
-            {{value+1}}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
+      <mat-label>Select role result</mat-label>
 
-      <button (click)="roleSubmit()">Next Role</button>
+      <mat-select name="score" [(value)]="selectedRole">
+        <mat-option [value]="0">0</mat-option>
+        <mat-option *ngFor="let value of availableOptions" [value]="value+1">
+          {{value+1}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
 
+    <button (click)="roleSubmit()">Next Role</button>
+    <div class="restart-game-during" (click)="restartGame()">Restart Game</div>
+
+  </div>
 </section>
 
-<ng-template #gameOver>Game Over {{game.name}}, You Score is {{game.total}}</ng-template>
+<ng-template #gameOver>
+  <div class="gameover-prompt">Game Over <span>{{game.name}}</span>, Your Score is <span>{{game.total}}</span></div>
+  <div class="gameover-actions">
+    <div (click)="restartGame()">Restart Game</div>
+    <div [routerLink]="['/']">Back To Leaderboard</div>
+  </div>
+</ng-template>

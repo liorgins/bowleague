@@ -1,7 +1,32 @@
-.board {
+.title-section {
+    height: 100px;
     display: grid;
-    grid-template-columns: repeat(11, 1fr);
-    column-gap: 0px !important;
+    place-items: center;
+    font-size: var(--text-medium);
+    color: var(--text-color);
+    
+    span {
+        color: var(--action-color);
+        font-weight: bold;
+    }
+}
+
+.board-section {
+    padding: 20px;
+    display: grid;
+    place-items: center;
+    overflow-x: hidden;
+    &:hover {
+        overflow-x: scroll;
+    }
+
+}
+
+.board {
+    padding: 20px;
+    display: grid;
+    grid-template-columns: repeat(10, 100px);
+    
     >.score-frame {
         color: var(--text-color);
     }
@@ -11,20 +36,27 @@
     display: grid;
     grid-template-rows: repeat(3,1fr);
     justify-items: center;
+    align-items: center;
     height: 120px;
-    max-width: 90px;
-    min-width: 60px;
-    border: 1px solid black;
+
+    background: var(--panel-bg);
+    border-radius: var(--border-radius);
     color: var(--text-color);
     transition: all 0.5s ease-in-out;
 
    &.active-frame {
-    background: greenyellow;
+    background: var(--action-color);
+    color: white;
     transform: scale(1.1);
     box-shadow: 2px 2px 5px #000000;
    }
 
     >.frame-number {
+        width: 100%;
+        text-align: center;
+        font-weight: bold;
+        border-bottom: 2px solid #ffffff4d;
+        padding-bottom: 8px;
 
     }
     >.frame-score {
@@ -32,20 +64,17 @@
         display: grid;
         grid-auto-flow: column;
         justify-content: space-evenly;
-        > .first {
-            border-right: 1px solid black;
-        }
-        
-
     }
 
     >.frame-total {
+        width: 100%;
+        text-align: center;
+        font-weight: bold;
+        border-top: 2px solid #ffffff4d;
+        padding-top: 8px;
 
     }
     
-    
-    
-
     &:nth-child(1) {
         animation: slidein1 .7s ease-out;
     }
@@ -57,27 +86,21 @@
     }
     &:nth-child(4) {
         animation: slidein4 .7s ease-out;
-
     }
     &:nth-child(5) {
         animation: slidein5 .7s ease-out;
-
     }
     &:nth-child(6) {
         animation: slidein6 .7s ease-out;
-
     }
     &:nth-child(7) {
         animation: slidein7 .7s ease-out;
-
     }
     &:nth-child(8) {
         animation: slidein8 .7s ease-out;
-
     }
     &:nth-child(9) {
         animation: slidein9 .7s ease-out;
-
     }
     &:nth-child(10) {
         animation: slidein10 .7s ease-out;
@@ -86,7 +109,44 @@
 
 
 
+.game-controller-section {
+    padding: 20px;
+    display: grid;
+    place-items: center;
 
+    .game-controller {
+        display: grid;
+        
+    }
+}
+
+.gameover-prompt {
+    color: var(--text-color);
+    font-size: var(--text-medium);
+    >span {
+        color: var(--action-color);
+        font-size: var(--text-large);
+    }
+}
+
+.gameover-actions {
+    margin-top: 30px;
+    display: grid;
+    grid-auto-flow: column;
+    column-gap: 40px;
+
+    >div {
+        cursor: pointer;
+        color: var(--action-color);
+    }
+}
+
+.restart-game-during {
+    margin-top: 20px;
+    cursor: pointer;
+    color: var(--action-color);
+    text-align: center;
+}
 
 
 @keyframes slidein1 {

@@ -1,51 +1,162 @@
-
-
-
 .game-hero {
-    height: 250px;
-    max-height: 350px;
-    margin: 20px;
-    background-color: var(--panel-bg);
+    height: 150px;
     display: grid;
     justify-items: center;
-    align-items: center;
-    >p {
-        font-size: var(--text-large);
-        color: var(--text-color);
-        text-align: center;
-    }
-    >button {
-        width: 240px;
+    padding: 0 10px;
+    margin-bottom: 20px;
+
+    >.banner {
+        max-width: 800px;
+        width: 100%;
+        display: grid;
+        align-items: center;
+        grid-template-columns: 1fr 1fr;
+        padding: 0 20px;
+        border-radius: var(--border-radius);
+        background: rgb(0, 60, 111);
+        background: linear-gradient(115deg, rgba(0, 60, 111, 1) 0%, rgba(0, 0, 0, 0.15172006302521013) 100%);
+
+        
+
+        >img {
+            width: 200px;
+            justify-self: end;
+            animation: banner 4s infinite ease-in-out;
+        }
+
     }
 
     border-radius: var(--border-radius);
 }
 
-.leaderboard {
-    margin: 20px;
-    background-color: var(--panel-bg);
-    border-radius: var(--border-radius);
+.banner-left {
+    font-size: var(--text-medium);
+    color: white;
+}
+
+@media(min-width: 500px) {
+    .banner-left {
+        font-size: var(--text-large);
+    }
+}
+
+@keyframes banner {
+    0% {
+        transform: rotate(-1deg) scale(1.1);
+    }
+
+    50% {
+        transform: rotate(1deg) scale(1.2);
+    }
+
+    100% {
+        transform: rotate(-1deg) scale(1.1);
+
+    }
+}
+
+.leaderboard-section {
     display: grid;
-    row-gap: 10px;
-    
-    >.row-header {
-        border-bottom: 1px solid var(--text-color);
-        font-weight: 600;
-    }
+    justify-items: center;
+    padding: 0 10px;
 
-    >.score-row {
-        height: 30px;
+    >.leaderboard {
+        padding: 10px;
+        background-color: var(--panel-bg);
+        border-radius: var(--border-radius);
         display: grid;
-        grid-template-columns: 50px 1fr 1fr;
-        align-items: center;
-        >.rank {
+        color: var(--text-color);
+        width: 100%;
+        max-width: 800px;
 
-        }
-        >.name {
+        >.score-row {
+            height: 40px;
+            display: grid;
+            padding: 0 30px;
+            grid-template-columns: 50px 1fr 1fr;
+            align-items: center;
+            border-bottom: 2px solid #80808030;
 
-        }
-        >.score {
-           justify-self: end; 
+            &:last-child {
+                border: none;
+            }
+
+            >.rank {}
+
+            >.name {}
+
+            >.score {
+                justify-self: end;
+            }
         }
     }
+}
+
+
+.podium-section {
+    display: grid;
+    justify-items: center;
+
+    >.podium-container {
+        display: grid;
+        justify-items: center;
+
+        >.top3 {
+            display: grid;
+            width: 100%;
+            grid-template-columns: repeat(3, 1fr);
+            justify-items: center;
+            height: 65px;
+
+            >.top-score {
+                display: grid;
+                justify-items: center;
+                align-items: center;
+                row-gap: 10px;
+                color: var(--text-color);
+
+                &:nth-child(1) {
+                    >.top-name {
+                        transform: scale(1.4);
+                    }
+                }
+
+                &:nth-child(2) {
+                    >.top-name {
+                        transform: scale(1.6);
+                    }
+                }
+
+                &:nth-child(3) {
+                    >.top-name {
+                        transform: scale(1.2);
+                    }
+                }
+
+            }
+
+            >.top-score {
+                &:nth-child(1) {
+                    align-self: center
+                }
+
+                &:nth-child(2) {
+                    align-self: start;
+                }
+
+                &:nth-child(3) {
+                    align-self: end;
+                }
+
+            }
+
+        }
+
+        >.podium-img {
+            width: 250px;
+        }
+    }
+
+
+
 }

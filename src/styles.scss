@@ -1,4 +1,3 @@
-
 // Custom Theming for Angular Material
 // For more information: https://material.angular.io/guide/theming
 @use '@angular/material' as mat;
@@ -31,23 +30,21 @@ $purple: (
     'A400': 'e0e1ff',
     'A700': 'c7c8ff',
     'contrastDefaultColor': 'light',
-    'contrastDarkColors': (
-      '50',
-      '100',
-      '200',
-      '300',
-      '400',
-      '500',
-      '600',
-      '700',
-      'A100',
-      'A200',
-      'A400',
-      'A700'
+    'contrastDarkColors': ('50',
+        '100',
+        '200',
+        '300',
+        '400',
+        '500',
+        '600',
+        '700',
+        'A100',
+        'A200',
+        'A400',
+        'A700'
     ),
-    'contrastLightColors': (
-      '800',
-      '900'
+    'contrastLightColors': ('800',
+        '900'
     )
 );
 
@@ -62,13 +59,10 @@ $bowleague-warn: mat.define-palette(mat.$red-palette);
 
 // Create the theme object. A theme consists of configurations for individual
 // theming systems such as "color" or "typography".
-$bowleague-theme: mat.define-light-theme((
-  color: (
-    primary: $bowleague-primary,
-    accent: $bowleague-accent,
-    warn: $bowleague-warn,
-  )
-));
+$bowleague-theme: mat.define-light-theme((color: (primary: $bowleague-primary,
+                accent: $bowleague-accent,
+                warn: $bowleague-warn,
+            )));
 
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component
@@ -77,6 +71,7 @@ $bowleague-theme: mat.define-light-theme((
 
 
 @import url(styles/_form.scss);
+
 /* You can add global styles to this file, and also import other style files */
 :host {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
@@ -130,7 +125,7 @@ p {
     --panel-bg: #d5d5d54e;
     --action-color: var(--primary-color);
 
-    --border-radius: 25px;
+    --border-radius: 20px;
 
 
 }
@@ -148,11 +143,26 @@ body {
         --action-color: var(--secondary-color);
     }
 }
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; };
+
+html,
+body {
+    height: 100%;
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+;
 
 
 
 
 
-  
+/*global angular material style override*/
+.mdc-text-field--filled,
+.mdc-text-field--focused {
+    background-color: transparent !important;
+}

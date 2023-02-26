@@ -1,11 +1,19 @@
-<div class="new-game-dialog">
-    <form [formGroup]="newGameForm" (submit)="play()">
-        <input formControlName="name" placeholder="Enter your name...">
-        <mat-checkbox formControlName="rememberMe">Remember me</mat-checkbox>
-        <button type="submit">Play</button>
-    </form>
-</div>
 
+
+<h1 mat-dialog-title>Lets Go!</h1>
+<div mat-dialog-content>
+  <form [formGroup]="newGameForm" (submit)="play()">
+  <mat-form-field appearance="fill">
+    <mat-label>Name</mat-label>
+    <input #name formControlName="name" matInput>
+  </mat-form-field>
+  <mat-checkbox *ngIf="name.value" formControlName="rememberMe">Remember me</mat-checkbox>
+  </form>
+</div>
+<div class="dialog-actions">
+  <button (click)="reject()">Later</button>
+  <button (click)="play()" cdkFocusInitial>Play!</button>
+</div>
 <div class="continue-as" *ngIf="data.lastName !== null" (click)="continueClicked()">
-    CONTINUE AS {{data.lastName}}
+    CONTINUE AS {{data.lastName | uppercase}}
 </div>

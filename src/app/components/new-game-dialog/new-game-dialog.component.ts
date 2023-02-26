@@ -32,8 +32,11 @@ export class NewGameDialogComponent implements OnInit {
 
 
   play(): void {
-    console.log(this.newGameForm.value)
     this.dialogRef.close(this.newGameForm.value);
+  }
+
+  reject(): void {
+    this.dialogRef.close();
   }
 
   continueClicked() {

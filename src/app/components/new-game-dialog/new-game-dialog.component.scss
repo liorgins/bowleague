@@ -1,14 +1,17 @@
-.new-game-dialog {
+.continue-as {
+    height: 60px;
     display: grid;
-    row-gap: 20px;
-    justify-items: center;
+    place-items: center;
+    background: var(--action-color);
+    color: white;
+    width: 100%;
+    cursor: pointer;
+}
 
-    >.continue-as {
-        height: 60px;
-        display: grid;
-        place-items: center;
-        background: var(--action-color);
-        color: var(--text-color);
-        width: 100%;
-    }
+.dialog-actions {
+    display: grid;
+    grid-auto-flow: column;
+    column-gap: 40px;
+    padding: 0 15px;
+    margin-bottom: 20px;
 }

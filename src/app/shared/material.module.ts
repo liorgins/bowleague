@@ -3,6 +3,10 @@ import { CommonModule } from '@angular/common';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatSelectModule } from '@angular/material/select';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatInputModule } from '@angular/material/input';
+
+
 
 
 
@@ -12,12 +16,16 @@ import { MatSelectModule } from '@angular/material/select';
     CommonModule,
     MatDialogModule,
     MatCheckboxModule,
-    MatSelectModule
+    MatSelectModule,
+    MatSidenavModule,
+    MatInputModule
   ],
   exports: [
     MatDialogModule,
     MatCheckboxModule,
-    MatSelectModule
+    MatSelectModule,
+    MatSidenavModule,
+    MatInputModule
   ]
 })
 export class MaterialModule { }

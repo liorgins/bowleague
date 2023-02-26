@@ -1,21 +1,33 @@
 <section class="game-hero">
-    <p>
-        Can you beat top Scorrer?
-    </p>
-    <button (click)="startNewGame()">Play Now</button>
-</section>
-<section class="leaderboard">
-
-    <div class="score-row row-header">
-        <div class="rank">Rank</div>
-        <div class="name">Name</div>
-        <div class="score">Score</div>
-    </div>
-    <ng-container *ngFor="let score of (mockRows | async); let i = index;">
-        <div class="score-row">
-            <div class="rank">#{{i}}</div>
-            <div class="name">{{score.name}}</div>
-            <div class="score">{{score.score}}</div>
+    <div class="banner">
+        <div class="banner-left">
+            <div>Can You Do Better?</div>
+            <button (click)="startNewGame()">Play Now</button>
         </div>
-    </ng-container>
+        <img src="assets/banner.png">
+    </div>
+    
+</section>
+<div class="podium-section">
+    <div class="podium-container">
+        <div class="top3">
+            <div class="top-score" *ngFor="let score of (scores$ | async | slice:0:3 ); let i = index;">
+                <div class="top-name">{{score.name}}</div>
+                <div class="top-score">{{score.score}}</div>
+            </div>
+        </div>
+        <img class="podium-img" src="assets/podium.png">
+    </div>
+
+</div>
+<section class="leaderboard-section">
+    <div class="leaderboard">
+        <ng-container *ngFor="let score of (scores$ | async | slice:3 ); let i = index;">
+            <div class="score-row">
+                <div class="rank">{{i+4}}</div>
+                <div class="name">{{score.name}}</div>
+                <div class="score">{{score.score}}</div>
+            </div>
+        </ng-container>
+    </div>
 </section>
