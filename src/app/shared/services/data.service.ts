@@ -6,17 +6,17 @@ import { LocalstorageService } from "./localstorage.service";
 
 
 const defaultScores = [
-  { name: 'lior', score: 150 },
-  { name: 'lior', score: 100 },
-  { name: 'Moshe', score: 90 },
+  { name: 'Maeve Bradley', score: 150 },
+  { name: 'Princess Mcintyre', score: 100 },
+  { name: 'Marissa Cortez', score: 90 },
   { name: 'Mony man', score: 80 },
-  { name: 'ROPIS', score: 70 },
-  { name: 'Levi', score: 60 },
-  { name: 'lior', score: 50 },
-  { name: 'lior', score: 40 },
-  { name: 'lior', score: 30 },
-  { name: 'lior', score: 20 },
-  { name: 'lior', score: 10 }
+  { name: 'Armaan Mendoza', score: 70 },
+  { name: 'Lior Ginsberg', score: 60 },
+  { name: 'Willard Manning', score: 50 },
+  { name: 'Tina Woodard', score: 40 },
+  { name: 'Issac Kennedy', score: 30 },
+  { name: 'Willard Manning', score: 20 },
+  { name: 'Francesca Meyers', score: 10 }
 ];
 
 @Injectable({
