@@ -81,10 +81,6 @@
                 border: none;
             }
 
-            >.rank {}
-
-            >.name {}
-
             >.score {
                 justify-self: end;
             }
@@ -103,6 +99,7 @@
 
         >.top3 {
             display: grid;
+            height: 100px;
             width: 100%;
             grid-template-columns: repeat(3, 1fr);
             justify-items: center;
@@ -153,7 +150,7 @@
         }
 
         >.podium-img {
-            width: 250px;
+            width: 350px;
         }
     }
 

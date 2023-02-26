@@ -12,7 +12,7 @@
     <div class="podium-container">
         <div class="top3">
             <div class="top-score" *ngFor="let score of (scores$ | async | slice:0:3 ); let i = index;">
-                <div class="top-name">{{score.name}}</div>
+                <div class="top-name">{{score.name | slice:0:8}}</div>
                 <div class="top-score">{{score.score}}</div>
             </div>
         </div>
